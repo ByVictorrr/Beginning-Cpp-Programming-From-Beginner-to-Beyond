@@ -98,10 +98,7 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="Description.txt"/>
     <File Name="main.cpp"/>
-    <File Name="romeoandjuliet"/>
-    <File Name="description.txt"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

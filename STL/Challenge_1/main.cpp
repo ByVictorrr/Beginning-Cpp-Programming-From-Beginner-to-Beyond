@@ -1,73 +1,50 @@
-// Section 19
+// Section 20
 // Challenge 1
-// Formatting output
+// Identifying palindrome strings using a deque
+#include <cctype>
+#include <deque>
 #include <iostream>
-#include <iomanip>
-#include <vector>
 #include <string>
+#include <vector>
+#include <iomanip>
 
-struct City {
-    std::string name;
-    long population;
-    double cost;
-};
-
-// Assume each country has at least 1 city
-struct Country {
-    std::string name;
-    std::vector<City> cities;
-};
-
-struct Tours {
-    std::string title;
-    std::vector<Country> countries;
-};
+bool is_palindrome(const std::string& s)
+{
+    std::deque<char> deq;
+    char front, back;
+    for(int i = 0; i< s.size(); i++)
+        deq.push_back(s[i]);
+    // You must implement this function.
+    int i=0;
+    while(deq.size() > 0){
+        if(deq.size() == 1){
+            return true;
+        }
+        back = deq.back();
+        front = deq.front();
+        if(back != front){
+            return false;
+        }
+        deq.pop_back();
+        deq.pop_front();
+    }
+    // Since we are learning the STL - use a deque to solve the problem.
+    return true;
+}
 
 int main()
 {
-    Tours tours
-        { "Tour Ticket Prices from Miami",
-            {
-                {
-                    "Colombia", { 
-                        { "Bogota", 8778000, 400.98 },
-                        { "Cali", 2401000, 424.12 },
-                        { "Medellin", 2464000, 350.98 },
-                        { "Cartagena", 972000, 345.34 } 
-                    },
-                },
-                {
-                    "Brazil", { 
-                        { "Rio De Janiero", 13500000, 567.45 },
-                        { "Sao Paulo", 11310000, 975.45 },
-                        { "Salvador", 18234000, 855.99 }
-                    },
-                },
-                {
-                    "Chile", { 
-                        { "Valdivia", 260000, 569.12 }, 
-                        { "Santiago", 7040000, 520.00 }
-                },
-            },
-                { "Argentina", { 
-                    { "Buenos Aires", 3010000, 723.77 } 
-                } 
-            },
-        }
-    };
 
-    // Unformatted display so you can see how to access the vector elements
-    std::cout << tours.title << std::endl;
-    for(auto country : tours.countries) {   // loop through the countries
-        std::cout << country.name << std::endl;
-        for(auto city : country.cities) {       // loop through the cities for each country
-            std::cout << "\t" << city.name 
-                          << "\t" << city.population 
-                          << "\t" << city.cost 
-                          << std::endl;
-        }
+    std::vector<std::string> test_strings{ "a", "aa", "aba", "abba", "abbcbba", "ab", "abc", "radar", "bob", "ana",
+        "avid diva", "Amore, Roma", "A Toyota's a toyota", "A Santa at NASA", "C++",
+        "A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal-Panama!", "This is a palindrome", "palindrome" };
+   
+    std::cout << std::boolalpha;
+    std::cout << std::setw(8) << std::left << "Result" << "String" << std::endl;
+    for(const auto& s : test_strings) {
+        std::cout << std::setw(8) << std::left << is_palindrome(s)  << s << std::endl;
     }
-
-    std::cout << std::endl << std::endl;
+    std::cout << std::endl;
     return 0;
+    
 }

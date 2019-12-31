@@ -5,8 +5,24 @@
 #include <sstream>
 #include <string>
 #include <limits>
+#include <algorithm>
+
+
+template <typename T>
+//template <classname T>
+
+T max( T a, T b ){
+    return a > b ? a : b;
+}
+
+
 
 int main() {
+
+    max<int>(2,3);
+
+
+
     int num{};
     double total{};
     std::string name{};
